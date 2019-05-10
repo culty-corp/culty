@@ -28,7 +28,7 @@ public class SpringMongoConfig extends AbstractMongoConfiguration {
     @Override
     @Bean
     public MongoClient mongoClient() {
-        MongoClientURI uri = new MongoClientURI("mongodb+srv://culty:culty123@culty-jo40j.mongodb.net/test?retryWrites=true");
+        MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017");
         return new MongoClient(uri);
     }
 }
