@@ -19,7 +19,7 @@ public class Obra {
     
     private String nome;
     private TipoConteudo tipoConteudo;
-    private Usuario usuario;
+    private Culty usuario;
     private byte[] conteudo;
     private int quantGostei;
     private int quantVisualizacoes;
@@ -34,11 +34,11 @@ public class Obra {
         this.nome = nome;
     }
 
-    public Usuario getUsuario() {
+    public Culty getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Culty usuario) {
         this.usuario = usuario;
     }
 
