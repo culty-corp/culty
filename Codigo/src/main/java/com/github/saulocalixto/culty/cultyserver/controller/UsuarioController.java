@@ -2,6 +2,7 @@ package com.github.saulocalixto.culty.cultyserver.controller;
 
 import com.github.saulocalixto.culty.cultyserver.model.Usuario;
 import com.github.saulocalixto.culty.cultyserver.servico.UsuarioServico;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,20 +23,21 @@ public class UsuarioController {
         return ResponseEntity.ok().body(lista);
     }
 
-//
-//    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-//    public Culty consulte(@PathVariable("id") ObjectId id) {
-//        return repositorio.findBy_id(id);
-//    }
-//
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Usuario> consultarPorId(@PathVariable("id") String id) {
+        Usuario usuario = servico.consutarPorId(id);
+        return ResponseEntity.ok().body(usuario);
+    }
+
 //    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-//    public void atualize(@PathVariable("id") ObjectId id, @Valid @RequestBody Culty usuario) {
+//    public void atualize(@PathVariable("id") ObjectId id, @Valid @RequestBody Usuario usuario) {
 //        usuario.set_id(id);
 //        repositorio.save(usuario);
 //    }
 //
 //    @RequestMapping(value = "/", method = RequestMethod.POST)
-//    public Culty crie(@Valid @RequestBody Culty usuario) {
+//    public Usuario crie(@Valid @RequestBody Usuario usuario) {
 //        usuario.set_id(ObjectId.get());
 //        repositorio.save(usuario);
 //
