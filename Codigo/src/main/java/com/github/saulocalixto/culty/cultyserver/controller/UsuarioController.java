@@ -39,6 +39,11 @@ public class UsuarioController {
         return ResponseEntity.created(uri).build();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deletar(@PathVariable("id") String id) {
+        servico.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
 
 //    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 //    public void atualize(@PathVariable("id") ObjectId id, @Valid @RequestBody Usuario usuario) {
@@ -46,8 +51,5 @@ public class UsuarioController {
 //        repositorio.save(usuario);
 //    }
 
-//    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-//    public void apague(@PathVariable("id") ObjectId id) {
-//        repositorio.delete(repositorio.findBy_id(id));
-//    }
+
 }

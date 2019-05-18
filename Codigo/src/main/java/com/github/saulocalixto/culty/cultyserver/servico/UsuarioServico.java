@@ -27,4 +27,9 @@ public class UsuarioServico {
     public Usuario criar(Usuario usuario) {
         return repo.insert(usuario);
     }
+
+    public void deletar (String id) {
+        consutarPorId(id);
+        repo.deleteById(id);
+    }
 }
