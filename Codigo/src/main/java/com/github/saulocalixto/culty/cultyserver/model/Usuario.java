@@ -13,7 +13,7 @@ import java.util.List;
 public class Usuario implements Serializable {
 
     @Id
-    public ObjectId _id;
+    private ObjectId _id;
 
     private String nomeCulty;
     private String descricao;
@@ -76,6 +76,9 @@ public class Usuario implements Serializable {
         this.redesSociais = redesSociais;
     }
 
+    public ObjectId get_id() {
+        return _id;
+    }
 
 
 //    public Localizacao getLocalizacao() {
