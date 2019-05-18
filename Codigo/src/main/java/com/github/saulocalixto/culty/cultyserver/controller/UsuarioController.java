@@ -1,16 +1,11 @@
 package com.github.saulocalixto.culty.cultyserver.controller;
 
-import com.github.saulocalixto.culty.cultyserver.model.Culty;
-import com.github.saulocalixto.culty.cultyserver.repositorio.IUsuarioRepository;
-import org.apache.coyote.Response;
-import org.bson.types.ObjectId;
+import com.github.saulocalixto.culty.cultyserver.model.Usuario;
+import com.github.saulocalixto.culty.cultyserver.servico.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -18,14 +13,12 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private IUsuarioRepository repositorio;
+    private UsuarioServico servico;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<Culty>> consulteTodos() {
-        Culty maria = new Culty("maria", "cantora de opera", "maria@email.com");
+    public ResponseEntity<List<Usuario>> consulteTodos() {
 
-        List<Culty> lista = new ArrayList<>();
-        lista.addAll(Arrays.asList(maria));
+        List<Usuario> lista = servico.consultarTodos();
         return ResponseEntity.ok().body(lista);
     }
 

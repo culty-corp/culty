@@ -2,11 +2,14 @@ package com.github.saulocalixto.culty.cultyserver.model;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Culty {
+@Document(collection = "culty")
+public class Usuario implements Serializable {
 
     @Id
     public ObjectId _id;
@@ -21,10 +24,10 @@ public class Culty {
 //    private Localizacao localizacao;
 
 
-    public Culty() {
+    public Usuario() {
     }
 
-    public Culty(String nomeCulty, String descricao, String email) {
+    public Usuario(String nomeCulty, String descricao, String email) {
         this.nomeCulty = nomeCulty;
         this.descricao = descricao;
         this.email = email;

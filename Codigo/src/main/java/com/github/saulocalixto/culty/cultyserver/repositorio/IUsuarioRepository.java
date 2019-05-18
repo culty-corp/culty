@@ -1,9 +1,9 @@
 package com.github.saulocalixto.culty.cultyserver.repositorio;
 
-import com.github.saulocalixto.culty.cultyserver.model.Culty;
-import org.bson.types.ObjectId;
+import com.github.saulocalixto.culty.cultyserver.model.Usuario;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IUsuarioRepository extends MongoRepository<Culty, String> {
-    Culty findBy_id(ObjectId _id);
+@Repository
+public interface IUsuarioRepository extends MongoRepository<Usuario, String> {
 }
