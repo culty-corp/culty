@@ -45,11 +45,10 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 
-//    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-//    public void atualize(@PathVariable("id") ObjectId id, @Valid @RequestBody Usuario usuario) {
-//        usuario.set_id(id);
-//        repositorio.save(usuario);
-//    }
-
-
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> atualizar(@PathVariable("id") String id, @RequestBody Usuario usuario) {
+        usuario.set_id(new ObjectId(id));
+        usuario = servico.atualizar(usuario);
+        return ResponseEntity.noContent().build();
+    }
 }

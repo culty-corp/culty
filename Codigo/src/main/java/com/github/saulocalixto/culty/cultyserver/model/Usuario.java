@@ -80,6 +80,10 @@ public class Usuario implements Serializable {
         return _id;
     }
 
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
+
 
 //    public Localizacao getLocalizacao() {
 //        return localizacao;
