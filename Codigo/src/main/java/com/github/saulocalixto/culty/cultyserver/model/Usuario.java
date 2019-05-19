@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "culty")
+@Document(collection = "usuario")
 public class Usuario implements Serializable {
 
     @Id
@@ -19,21 +19,22 @@ public class Usuario implements Serializable {
     private String descricao;
     private String email;
     private Date dataDeNascimento;
+    private Localizacao localizacao;
 
     private List<String> redesSociais = new ArrayList<>();
-
-//    private Localizacao localizacao;
 
 
     public Usuario() {
     }
 
-    public Usuario(String nomeCulty, String descricao, String email, Date dataDeNascimento, List<String> redesSociais) {
+    public Usuario(String nomeCulty, String descricao, String email, Date dataDeNascimento, List<String> redesSociais,
+                   Localizacao localizacao) {
         this.nomeCulty = nomeCulty;
         this.descricao = descricao;
         this.email = email;
         this.dataDeNascimento = dataDeNascimento;
         this.redesSociais = redesSociais;
+        this.localizacao = localizacao;
     }
 
     public String getNomeCulty() {
@@ -84,12 +85,11 @@ public class Usuario implements Serializable {
         this._id = _id;
     }
 
+    public Localizacao getLocalizacao() {
+        return localizacao;
+    }
 
-//    public Localizacao getLocalizacao() {
-//        return localizacao;
-//    }
-//
-//    public void setLocalizacao(Localizacao localizacao) {
-//        this.localizacao = localizacao;
-//    }
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
+    }
 }

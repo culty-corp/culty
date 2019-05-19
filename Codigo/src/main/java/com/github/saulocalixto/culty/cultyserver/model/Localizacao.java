@@ -6,20 +6,26 @@
 
 package com.github.saulocalixto.culty.cultyserver.model;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-
 /**
  * Armazena as informações básica de localização
+ * No banco de dados Localização está aninhado a usuário
+ *
  * @author Lucas Sampaio Dias
  */
 public class Localizacao {
-    @Id
-    public ObjectId _id;
-    
+
     private String cidade;
     private String estado;
     private String pais;
+
+    public Localizacao() {
+    }
+
+    public Localizacao(String cidade, String estado, String pais) {
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+    }
 
     public String getCidade() {
         return cidade;
