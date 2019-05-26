@@ -4,7 +4,7 @@
  * Creative Commons Attribution 4.0 International License.
  */
 
-package com.github.saulocalixto.culty.cultyserver.model;
+package com.github.saulocalixto.culty.cultyserver.model.usuario;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

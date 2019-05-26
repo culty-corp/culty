@@ -1,6 +1,6 @@
 package com.github.saulocalixto.culty.cultyserver.repositorio;
 
-import com.github.saulocalixto.culty.cultyserver.model.Usuario;
+import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

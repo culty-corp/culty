@@ -1,5 +1,6 @@
-package com.github.saulocalixto.culty.cultyserver.model;
+package com.github.saulocalixto.culty.cultyserver.model.usuario;
 
+import com.github.saulocalixto.culty.cultyserver.model.usuario.localizacao.Municipio;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
@@ -12,7 +13,7 @@ public class Usuario {
     private String email;
     private String senha;
     private RedesSociais redesSociais;
-    private Localizacao localizacao;
+    private Municipio municipio;
 
     public String get_id() {
         return _id.toHexString();
@@ -54,11 +55,11 @@ public class Usuario {
         this.redesSociais = redesSociais;
     }
 
-    public Localizacao getLocalizacao() {
-        return localizacao;
+    public Municipio getMunicipio() {
+        return municipio;
     }
 
-    public void setLocalizacao(Localizacao localizacao) {
-        this.localizacao = localizacao;
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
     }
 }

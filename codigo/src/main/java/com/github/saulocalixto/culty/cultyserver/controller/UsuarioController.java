@@ -1,6 +1,6 @@
 package com.github.saulocalixto.culty.cultyserver.controller;
 
-import com.github.saulocalixto.culty.cultyserver.model.Usuario;
+import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import com.github.saulocalixto.culty.cultyserver.repositorio.IUsuarioRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
