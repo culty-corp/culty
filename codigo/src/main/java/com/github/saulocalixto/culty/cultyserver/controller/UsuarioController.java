@@ -1,7 +1,7 @@
 package com.github.saulocalixto.culty.cultyserver.controller;
 
-import com.github.saulocalixto.culty.cultyserver.model.Usuario;
 import com.github.saulocalixto.culty.cultyserver.servico.UsuarioServico;
+import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

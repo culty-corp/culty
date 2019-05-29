@@ -1,5 +1,6 @@
-package com.github.saulocalixto.culty.cultyserver.model;
+package com.github.saulocalixto.culty.cultyserver.model.usuario;
 
+import com.github.saulocalixto.culty.cultyserver.model.Localizacao;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -87,9 +88,6 @@ public class Usuario implements Serializable {
 
     public Localizacao getLocalizacao() {
         return localizacao;
-    }
 
-    public void setLocalizacao(Localizacao localizacao) {
-        this.localizacao = localizacao;
     }
 }

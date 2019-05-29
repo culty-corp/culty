@@ -7,8 +7,11 @@
 package com.github.saulocalixto.culty.cultyserver.model;
 
 import com.github.saulocalixto.culty.cultyserver.model.enums.TipoConteudo;
+import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 /**
  * @author Lucas Sampaio Dias
@@ -23,8 +26,31 @@ public class Obra {
     private byte[] conteudo;
     private int quantGostei;
     private int quantVisualizacoes;
-    private String[] macroCategorias;
-    private String[] microCategorias;
+    private List<Filtro> filtros;
+
+    public int getQuantGostei() {
+        return quantGostei;
+    }
+
+    public void setQuantGostei(int quantGostei) {
+        this.quantGostei = quantGostei;
+    }
+
+    public int getQuantVisualizacoes() {
+        return quantVisualizacoes;
+    }
+
+    public void setQuantVisualizacoes(int quantVisualizacoes) {
+        this.quantVisualizacoes = quantVisualizacoes;
+    }
+
+    public List<Filtro> getFiltros() {
+        return filtros;
+    }
+
+    public void setFiltros(List<Filtro> filtros) {
+        this.filtros = filtros;
+    }
 
     public String getNome() {
         return nome;
@@ -72,21 +98,5 @@ public class Obra {
 
     public void setQuantidadeVisualizacoes(int quantiVisualizacoes) {
         this.quantVisualizacoes = quantiVisualizacoes;
-    }
-
-    public String[] getMacroCategorias() {
-        return macroCategorias;
-    }
-
-    public void setMacroCategorias(String[] macroCategorias) {
-        this.macroCategorias = macroCategorias;
-    }
-
-    public String[] getMicroCategorias() {
-        return microCategorias;
-    }
-
-    public void setMicroCategorias(String[] microCategorias) {
-        this.microCategorias = microCategorias;
     }
 }

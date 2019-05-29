@@ -1,6 +1,6 @@
 package com.github.saulocalixto.culty.cultyserver.servico;
 
-import com.github.saulocalixto.culty.cultyserver.model.Usuario;
+import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import com.github.saulocalixto.culty.cultyserver.repositorio.IUsuarioRepository;
 import com.github.saulocalixto.culty.cultyserver.servico.exceptions.ObjetoNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
