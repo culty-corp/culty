@@ -28,7 +28,8 @@ public class UsuarioController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Usuario> consultarPorId(@PathVariable("id") String id) {
-        Usuario usuario = servico.consutarPorId(id);
+        ObjectId objectId = new ObjectId(id);
+        Usuario usuario = servico.consultarPorId(objectId);
         return ResponseEntity.ok().body(usuario);
     }
 
@@ -41,7 +42,8 @@ public class UsuarioController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deletar(@PathVariable("id") String id) {
-        servico.deletar(id);
+        ObjectId objectId = new ObjectId(id);
+        servico.deletar(objectId);
         return ResponseEntity.noContent().build();
     }
 

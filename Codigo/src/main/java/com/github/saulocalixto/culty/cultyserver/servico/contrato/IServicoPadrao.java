@@ -10,29 +10,29 @@ public interface IServicoPadrao<T> {
      * @param id id do objeto a ser consultado.
      * @return Objeto consultado no banco.
      */
-    T consulte(ObjectId id);
+    T consultarPorId(ObjectId id);
 
     /***
      * Consulte todos os elementos salvos na coleção.
      * @return Lista com todos os elementos persistidos.
      */
-    List<T> consulteTodos();
+    List<T> consultarTodos();
 
     /***
      * Salva no banco um objeto.
      * @param objeto Objeto a ser salvo.
      */
-    T salve(T objeto);
+    T criar(T objeto);
 
     /***
      * Atualiza um objeto existente no banco.
      * @param objeto Objeto a ser atualizado.
      */
-    void atualize(T objeto);
+    T atualizar(T objeto);
 
     /***
      * Remove do banco um objeto.
      * @param id Objeto a ser removido.
      */
-    void exclua(ObjectId id);
+    void deletar(ObjectId id);
 }

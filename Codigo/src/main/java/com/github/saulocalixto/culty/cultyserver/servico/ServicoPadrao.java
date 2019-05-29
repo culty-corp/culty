@@ -14,27 +14,27 @@ public abstract class ServicoPadrao<T, T_REPO extends MongoRepository<T, String>
     private T_REPO repositorio;
 
     @Override
-    public Object consulte(ObjectId id) {
+    public Object consultarPorId(ObjectId id) {
         return null;
     }
 
     @Override
-    public List consulteTodos() {
+    public List consultarTodos() {
         return repositorio.findAll();
     }
 
     @Override
-    public Object salve(Object objeto) {
+    public Object criar(Object objeto) {
         return null;
     }
 
     @Override
-    public void atualize(Object objeto) {
-
+    public T atualizar(Object objeto) {
+        return null;
     }
 
     @Override
-    public void exclua(ObjectId id) {
+    public void deletar(ObjectId id) {
 
     }
 

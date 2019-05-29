@@ -20,7 +20,7 @@ public class Usuario implements Serializable {
     private String email;
     private Date dataDeNascimento;
     private Localizacao localizacao;
-    private RedesSociais redeSocial;
+    private RedesSociais redesSociais;
 
 
     public Usuario() {
@@ -32,7 +32,7 @@ public class Usuario implements Serializable {
         this.descricao = descricao;
         this.email = email;
         this.dataDeNascimento = dataDeNascimento;
-        this.localizacao = localizacao;
+        this.setLocalizacao(localizacao);
     }
 
     public String getNomeCulty() {
@@ -77,6 +77,18 @@ public class Usuario implements Serializable {
 
     public Localizacao getLocalizacao() {
         return localizacao;
-
     }
+
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public RedesSociais getRedesSociais() {
+        return redesSociais;
+    }
+
+    public void setRedesSociais(RedesSociais redesSociais) {
+        this.redesSociais = redesSociais;
+    }
+
 }
