@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +20,7 @@ public class Usuario implements Serializable {
     private String email;
     private Date dataDeNascimento;
     private Localizacao localizacao;
-
-    private List<String> redesSociais = new ArrayList<>();
+    private RedesSociais redeSocial;
 
 
     public Usuario() {
@@ -34,7 +32,6 @@ public class Usuario implements Serializable {
         this.descricao = descricao;
         this.email = email;
         this.dataDeNascimento = dataDeNascimento;
-        this.redesSociais = redesSociais;
         this.localizacao = localizacao;
     }
 
@@ -68,14 +65,6 @@ public class Usuario implements Serializable {
 
     public void setDataDeNascimento(Date dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
-    }
-
-    public List<String> getRedesSociais() {
-        return redesSociais;
-    }
-
-    public void setRedesSociais(List<String> redesSociais) {
-        this.redesSociais = redesSociais;
     }
 
     public ObjectId get_id() {
