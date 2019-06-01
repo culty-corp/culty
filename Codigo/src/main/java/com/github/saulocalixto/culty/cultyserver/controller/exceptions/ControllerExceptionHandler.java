@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class ControllerExceptionHandler {
 
     @ExceptionHandler(ObjetoNaoEncontradoException.class)
     public ResponseEntity<StandardError> objectNotFound (ObjetoNaoEncontradoException e, HttpServletRequest request) {

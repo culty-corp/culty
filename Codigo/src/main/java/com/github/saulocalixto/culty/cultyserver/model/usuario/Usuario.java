@@ -22,7 +22,6 @@ public class Usuario implements Serializable {
     private Localizacao localizacao;
     private RedesSociais redesSociais;
 
-
     public Usuario() {
     }
 
