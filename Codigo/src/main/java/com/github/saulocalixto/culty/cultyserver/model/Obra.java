@@ -6,6 +6,7 @@
 
 package com.github.saulocalixto.culty.cultyserver.model;
 
+import com.github.saulocalixto.culty.cultyserver.model.abstratos.ObjetoPadrao;
 import com.github.saulocalixto.culty.cultyserver.model.enums.TipoConteudo;
 import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import org.bson.types.ObjectId;
@@ -16,9 +17,7 @@ import java.util.List;
 /**
  * @author Lucas Sampaio Dias
  */
-public class Obra {
-    @Id
-    public ObjectId _id;
+public class Obra extends ObjetoPadrao {
     
     private String nome;
     private TipoConteudo tipoConteudo;

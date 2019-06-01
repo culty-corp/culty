@@ -1,6 +1,7 @@
 package com.github.saulocalixto.culty.cultyserver.model.usuario;
 
 import com.github.saulocalixto.culty.cultyserver.model.Localizacao;
+import com.github.saulocalixto.culty.cultyserver.model.abstratos.ObjetoPadrao;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,36 +11,21 @@ import java.util.Date;
 import java.util.List;
 
 @Document(collection = "usuario")
-public class Usuario implements Serializable {
+public class Usuario extends ObjetoPadrao {
 
-    @Id
-    private ObjectId _id;
-
-    private String nomeCulty;
+    private String nomeUsuario;
     private String descricao;
     private String email;
     private Date dataDeNascimento;
     private Localizacao localizacao;
     private RedesSociais redesSociais;
 
-    public Usuario() {
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public Usuario(String nomeCulty, String descricao, String email, Date dataDeNascimento, List<String> redesSociais,
-                   Localizacao localizacao) {
-        this.nomeCulty = nomeCulty;
-        this.descricao = descricao;
-        this.email = email;
-        this.dataDeNascimento = dataDeNascimento;
-        this.setLocalizacao(localizacao);
-    }
-
-    public String getNomeCulty() {
-        return nomeCulty;
-    }
-
-    public void setNomeCulty(String nomeCulty) {
-        this.nomeCulty = nomeCulty;
+    public void setNomeUsuario(String nomeCulty) {
+        this.nomeUsuario = nomeCulty;
     }
 
     public String getDescricao() {

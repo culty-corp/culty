@@ -3,7 +3,9 @@ package com.github.saulocalixto.culty.cultyserver.model.abstratos;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-public abstract class ObjetoPadrao {
+import java.io.Serializable;
+
+public abstract class ObjetoPadrao implements Serializable {
     @Id
     public ObjectId _id;
 

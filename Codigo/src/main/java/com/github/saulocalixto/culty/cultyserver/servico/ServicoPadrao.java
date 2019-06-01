@@ -8,37 +8,33 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public abstract class ServicoPadrao<T, T_REPO extends MongoRepository<T, String>> implements IServicoPadrao {
-
-    @Autowired
-    private T_REPO repositorio;
+public abstract class ServicoPadrao<T, T_REPO extends MongoRepository<T, String>> implements IServicoPadrao<T> {
 
     @Override
-    public Object consultarPorId(ObjectId id) {
-        return null;
+    public T consultarPorId(ObjectId id) {
+        return Repositorio().findById(id.toString()).get();
     }
 
     @Override
     public List consultarTodos() {
-        return repositorio.findAll();
+        return Repositorio().findAll();
     }
 
     @Override
-    public Object criar(Object objeto) {
-        return null;
+    public T criar(T objeto) {
+        return Repositorio().insert(objeto);
     }
 
     @Override
-    public T atualizar(Object objeto) {
-        return null;
+    public T atualizar(T objeto) {
+        return Repositorio().save(objeto);
     }
 
     @Override
     public void deletar(ObjectId id) {
-
+        consultarPorId(id);
+        Repositorio().deleteById(id.toString());
     }
 
-    public T_REPO Repositorio() {
-        return repositorio;
-    }
+    public  abstract T_REPO Repositorio();
 }
