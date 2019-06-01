@@ -3,6 +3,7 @@ package com.github.saulocalixto.culty.cultyserver.controller;
 import com.github.saulocalixto.culty.cultyserver.model.abstratos.ObjetoPadrao;
 import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoPadrao;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public abstract class ControllerPadrao<T extends ObjetoPadrao> {
 
+    @Autowired
     protected abstract IServicoPadrao<T> Servico();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -50,6 +52,4 @@ public abstract class ControllerPadrao<T extends ObjetoPadrao> {
         Servico().atualizar(objeto);
         return ResponseEntity.noContent().build();
     }
-
-
 }

@@ -36,5 +36,6 @@ public abstract class ServicoPadrao<T, T_REPO extends MongoRepository<T, String>
         Repositorio().deleteById(id.toString());
     }
 
-    public  abstract T_REPO Repositorio();
+    @Autowired
+    protected abstract T_REPO Repositorio();
 }
