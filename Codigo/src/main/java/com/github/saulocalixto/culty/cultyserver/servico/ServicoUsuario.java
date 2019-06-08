@@ -2,15 +2,13 @@ package com.github.saulocalixto.culty.cultyserver.servico;
 
 import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import com.github.saulocalixto.culty.cultyserver.repositorio.IUsuarioRepository;
-import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoPadrao;
 import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoUsuario;
-import com.github.saulocalixto.culty.cultyserver.servico.exceptions.ObjetoNaoEncontradoException;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository> implements IServicoUsuario {
@@ -23,10 +21,24 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository> i
         return repositorioUsuario;
     }
 
-    public Usuario seguirUsuario(String idSeguidor, String idSeguido) {
+    public Usuario seguir(String idSeguidor, String idSeguido) {
         Usuario seguidor = this.consultarPorId(new ObjectId(idSeguidor));
         Usuario seguido = this.consultarPorId(new ObjectId(idSeguido));
         seguidor.getListaSeguindo().add(seguido);
+        return repositorioUsuario.save(seguidor);
+    }
+
+    public Usuario deixarDeSeguir(String idSeguidor, String idSeguido) {
+        Usuario seguidor = this.consultarPorId(new ObjectId(idSeguidor));
+        //apenas checa se o usuario existe ou não
+        consultarPorId(new ObjectId(idSeguido));
+        Iterator iterator = seguidor.getListaSeguindo().iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = (Usuario) iterator.next();
+            if (usuario.get_id().equals(new ObjectId(idSeguido))) {
+                iterator.remove();
+            }
+        }
         return repositorioUsuario.save(seguidor);
     }
 }

@@ -29,7 +29,13 @@ public class UsuarioController extends ControllerPadrao<Usuario> {
 
     @RequestMapping(value = "/seguir/{idseguidor}/{idseguido}", method = RequestMethod.PUT)
     public ResponseEntity<Void> seguirUsuario(@PathVariable String idseguidor,@PathVariable String idseguido) {
-        servico.seguirUsuario(idseguidor, idseguido);
+        servico.seguir(idseguidor, idseguido);
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/deixarDeSeguir/{idseguidor}/{idseguido}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> deixarDeSeguir(@PathVariable String idseguidor,@PathVariable String idseguido) {
+        servico.deixarDeSeguir(idseguidor, idseguido);
         return ResponseEntity.noContent().build();
     }
 }
