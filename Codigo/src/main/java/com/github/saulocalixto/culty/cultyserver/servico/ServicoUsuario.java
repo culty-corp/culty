@@ -23,7 +23,10 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository> i
         return repositorioUsuario;
     }
 
-    @Override
-    public void seguirUsuario() {
+    public Usuario seguirUsuario(String idSeguidor, String idSeguido) {
+        Usuario seguidor = this.consultarPorId(new ObjectId(idSeguidor));
+        Usuario seguido = this.consultarPorId(new ObjectId(idSeguido));
+        seguidor.getListaSeguindo().add(seguido);
+        return repositorioUsuario.save(seguidor);
     }
 }

@@ -27,14 +27,9 @@ public class UsuarioController extends ControllerPadrao<Usuario> {
         return servico;
     }
 
-    @RequestMapping(value = "/se", method = RequestMethod.PUT)
-    public ResponseEntity<Void> seguirUsuario(@PathVariable("id") String id, @RequestBody Usuario objeto) {
-        objeto = new Usuario()
-                        .setDescricao("Usuarío novo")
-                        .setEmail("sauloacalixto@gmail.com")
-                        .setLocalizacao(new Localizacao())
-                        .setNomeUsuario("saulocalixto")
-                        .setRedesSociais(new RedesSociais());
+    @RequestMapping(value = "/seguir/{idseguidor}/{idseguido}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> seguirUsuario(@PathVariable String idseguidor,@PathVariable String idseguido) {
+        servico.seguirUsuario(idseguidor, idseguido);
         return ResponseEntity.noContent().build();
     }
 }

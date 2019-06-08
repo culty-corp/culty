@@ -11,23 +11,26 @@ public class RedesSociais {
         return facebook;
     }
 
-    public void setFacebook(String facebook) {
+    public RedesSociais setFacebook(String facebook) {
         this.facebook = facebook;
+        return this;
     }
 
     public String getInstagram() {
         return instagram;
     }
 
-    public void setInstagram(String instagram) {
+    public RedesSociais setInstagram(String instagram) {
         this.instagram = instagram;
+        return this;
     }
 
     public String getYoutube() {
         return youtube;
     }
 
-    public void setYoutube(String youtube) {
+    public RedesSociais setYoutube(String youtube) {
         this.youtube = youtube;
+        return this;
     }
 }

@@ -1,6 +1,5 @@
 package com.github.saulocalixto.culty.cultyserver.servico;
 
-import com.github.saulocalixto.culty.cultyserver.repositorio.IUsuarioRepository;
 import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoPadrao;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;

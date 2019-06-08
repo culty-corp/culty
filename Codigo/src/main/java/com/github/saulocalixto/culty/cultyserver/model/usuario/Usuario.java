@@ -2,11 +2,10 @@ package com.github.saulocalixto.culty.cultyserver.model.usuario;
 
 import com.github.saulocalixto.culty.cultyserver.model.Localizacao;
 import com.github.saulocalixto.culty.cultyserver.model.abstratos.ObjetoPadrao;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +18,10 @@ public class Usuario extends ObjetoPadrao {
     private Date dataDeNascimento;
     private Localizacao localizacao;
     private RedesSociais redesSociais;
+
+    @DBRef(lazy = true)
+    private List<Usuario> listaSeguindo = new ArrayList<>();
+
 
     public String getNomeUsuario() {
         return nomeUsuario;
@@ -74,4 +77,11 @@ public class Usuario extends ObjetoPadrao {
         return this;
     }
 
+    public List<Usuario> getListaSeguindo() {
+        return listaSeguindo;
+    }
+
+    public void setListaSeguindo(List<Usuario> listaSeguindo) {
+        this.listaSeguindo = listaSeguindo;
+    }
 }
