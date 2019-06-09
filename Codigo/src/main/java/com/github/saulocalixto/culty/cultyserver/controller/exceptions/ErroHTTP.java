@@ -2,7 +2,7 @@ package com.github.saulocalixto.culty.cultyserver.controller.exceptions;
 
 import java.io.Serializable;
 
-public class StandardError implements Serializable {
+public class ErroHTTP implements Serializable {
 
     private Long timestamp;
     private Integer status;
@@ -10,10 +10,10 @@ public class StandardError implements Serializable {
     private String messege;
     private String path;
 
-    public StandardError() {
+    public ErroHTTP() {
     }
 
-    public StandardError(Long timestamp, Integer status, String error, String messege, String path) {
+    public ErroHTTP(Long timestamp, Integer status, String error, String messege, String path) {
         this.setTimestamp(timestamp);
         this.setStatus(status);
         this.setError(error);

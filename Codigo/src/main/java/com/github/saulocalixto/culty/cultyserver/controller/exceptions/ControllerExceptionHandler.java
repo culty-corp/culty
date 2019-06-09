@@ -12,12 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(ObjetoNaoEncontradoException.class)
-    public ResponseEntity<StandardError> objectNotFound (ObjetoNaoEncontradoException e, HttpServletRequest request) {
+    public ResponseEntity<ErroHTTP> objectNotFound (ObjetoNaoEncontradoException e, HttpServletRequest request) {
 
         HttpStatus status = HttpStatus.NOT_FOUND;
-        StandardError error = new StandardError(System.currentTimeMillis(), status.value(), "Não encontrado",
+        ErroHTTP erro = new ErroHTTP(System.currentTimeMillis(), status.value(), "Não encontrado",
                 e.getMessage(), request.getRequestURI());
 
-        return ResponseEntity.status(status).body(error);
+        return ResponseEntity.status(status).body(erro);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErroHTTP> IllegalArgumetException (IllegalArgumentException e, HttpServletRequest request) {
+
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErroHTTP erro = new ErroHTTP(System.currentTimeMillis(), status.value(),
+                "Requisição com campos em formato inválido", e.getMessage(), request.getRequestURI());
+
+        return ResponseEntity.status(status).body(erro);
     }
 }
