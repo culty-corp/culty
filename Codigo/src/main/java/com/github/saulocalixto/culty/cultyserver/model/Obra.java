@@ -11,12 +11,14 @@ import com.github.saulocalixto.culty.cultyserver.model.enums.TipoConteudo;
 import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 /**
  * @author Lucas Sampaio Dias
  */
+@Document(collection = "obra")
 public class Obra extends ObjetoPadrao {
     
     private String nome;
