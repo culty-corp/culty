@@ -11,6 +11,7 @@ import com.github.saulocalixto.culty.cultyserver.model.enums.TipoConteudo;
 import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -23,11 +24,25 @@ public class Obra extends ObjetoPadrao {
     
     private String nome;
     private TipoConteudo tipoConteudo;
+
+    @DBRef
     private Usuario usuario;
+
+    private String descricao;
     private byte[] conteudo;
     private int quantGostei;
     private int quantVisualizacoes;
+
+    @DBRef
     private List<Filtro> filtros;
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     public int getQuantGostei() {
         return quantGostei;
