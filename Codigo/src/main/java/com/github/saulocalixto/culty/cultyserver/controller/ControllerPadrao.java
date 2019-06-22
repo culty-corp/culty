@@ -19,7 +19,7 @@ public abstract class ControllerPadrao<T extends ObjetoPadrao> {
     @Autowired
     protected abstract IServicoPadrao<T> Servico();
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"","/"}, method = RequestMethod.GET)
     public ResponseEntity<List<T>> consultarTodos() {
         List<T> lista = Servico().consultarTodos();
         return ResponseEntity.ok().body(lista);
@@ -32,7 +32,7 @@ public abstract class ControllerPadrao<T extends ObjetoPadrao> {
         return ResponseEntity.ok().body(objeto);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = {"","/"}, method = RequestMethod.POST)
     public ResponseEntity<Void> criar(@RequestBody T objeto) {
         objeto = Servico().criar(objeto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objeto.get_id()).toUri();
