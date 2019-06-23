@@ -18,11 +18,6 @@ public class ServicoObra extends ServicoPadrao<Obra, IObraRepository> implements
     }
 
     @Override
-    public void curtaObra(Obra obra) {
-        repositorio.save(obra);
-    }
-
-    @Override
     public void addVisualizacao(Obra obra) {
         repositorio.save(obra);
     }

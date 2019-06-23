@@ -1,6 +1,7 @@
 package com.github.saulocalixto.culty.cultyserver.model.usuario;
 
 import com.github.saulocalixto.culty.cultyserver.model.Localizacao;
+import com.github.saulocalixto.culty.cultyserver.model.Obra;
 import com.github.saulocalixto.culty.cultyserver.model.abstratos.ObjetoPadrao;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +22,9 @@ public class Usuario extends ObjetoPadrao {
 
     @DBRef(lazy = true)
     private List<Usuario> listaSeguindo = new ArrayList<>();
+
+    @DBRef(lazy = true)
+    private List<Obra> listaObrasGostadas = new ArrayList<>();
 
 
     public String getNomeUsuario() {
@@ -83,5 +87,13 @@ public class Usuario extends ObjetoPadrao {
 
     public void setListaSeguindo(List<Usuario> listaSeguindo) {
         this.listaSeguindo = listaSeguindo;
+    }
+
+    public List<Obra> getListaObrasGostadas() {
+        return listaObrasGostadas;
+    }
+
+    public void setListaObrasGostadas(List<Obra> listaObrasGostadas) {
+        this.listaObrasGostadas = listaObrasGostadas;
     }
 }
