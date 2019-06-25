@@ -19,6 +19,7 @@ public class Usuario extends ObjetoPadrao {
     private Date dataDeNascimento;
     private Localizacao localizacao;
     private RedesSociais redesSociais;
+    private int quantSeguidores = 0;
 
     @DBRef(lazy = true)
     private List<Usuario> listaSeguindo = new ArrayList<>();
@@ -95,5 +96,13 @@ public class Usuario extends ObjetoPadrao {
 
     public void setListaObrasGostadas(List<Obra> listaObrasGostadas) {
         this.listaObrasGostadas = listaObrasGostadas;
+    }
+
+    public int getQuantSeguidores() {
+        return quantSeguidores;
+    }
+
+    public void setQuantSeguidores(int quantSeguidores) {
+        this.quantSeguidores = quantSeguidores;
     }
 }

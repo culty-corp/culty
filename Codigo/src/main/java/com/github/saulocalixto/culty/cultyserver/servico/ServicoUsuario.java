@@ -30,6 +30,7 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository> i
     public Usuario seguir(String idSeguidor, String idSeguido) {
         Usuario seguidor = this.consultarPorId(new ObjectId(idSeguidor));
         Usuario seguido = this.consultarPorId(new ObjectId(idSeguido));
+        addSeguidor(seguido);
         seguidor.getListaSeguindo().add(seguido);
         return repositorioUsuario.save(seguidor);
     }
@@ -37,13 +38,14 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository> i
     @Override
     public Usuario deixarDeSeguir(String idSeguidor, String idSeguido) {
         Usuario seguidor = this.consultarPorId(new ObjectId(idSeguidor));
-        consultarPorId(new ObjectId(idSeguido));        //apenas checa se o usuario existe ou não
+        Usuario seguido = this.consultarPorId(new ObjectId(idSeguido));        //checa se o usuario existe ou não
         Iterator iterator = seguidor.getListaSeguindo().iterator();
         ObjectId objectIdSeguindo = new ObjectId(idSeguido);
         while (iterator.hasNext()) {
             Usuario usuario = (Usuario) iterator.next();
             if (usuario.get_id().equals(objectIdSeguindo)) {
                 iterator.remove();
+                removerSeguidor(seguido);
             }
         }
         return repositorioUsuario.save(seguidor);
@@ -54,21 +56,34 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository> i
         Usuario usuario = this.consultarPorId(new ObjectId(idUsuario));
         Obra obra = servicoObra.consultarPorId(new ObjectId(idObra));
         usuario.getListaObrasGostadas().add(obra);
+        servicoObra.addGostei(obra);
         return repositorioUsuario.save(usuario);
     }
 
     @Override
     public Usuario deixarDeGostarObra(String idUsuario, String idObra) {
         Usuario usuario = this.consultarPorId(new ObjectId(idUsuario));
-        servicoObra.consultarPorId(new ObjectId(idObra));   //apenas checa se a obra existe ou não
+        Obra obra = servicoObra.consultarPorId(new ObjectId(idObra));   //checa se a obra existe ou não
         Iterator iterator = usuario.getListaObrasGostadas().iterator();
-        ObjectId objectIdObra = new ObjectId(idObra);
         while (iterator.hasNext()) {
             Obra obraNaLista = (Obra) iterator.next();
-            if (obraNaLista.get_id().equals(objectIdObra)) {
+            if (obraNaLista.get_id().equals(obra.get_id())) {
                 iterator.remove();
+                servicoObra.removerGostei(obra);
             }
         }
         return repositorioUsuario.save(usuario);
+    }
+
+    private void addSeguidor (Usuario usuario) {
+        usuario.setQuantSeguidores(usuario.getQuantSeguidores() + 1);
+        repositorioUsuario.save(usuario);
+    }
+
+    private void removerSeguidor (Usuario usuario) {
+        usuario.setQuantSeguidores(usuario.getQuantSeguidores() - 1);
+        if (usuario.getQuantSeguidores() < 0)
+            usuario.setQuantSeguidores(0);
+        repositorioUsuario.save(usuario);
     }
 }

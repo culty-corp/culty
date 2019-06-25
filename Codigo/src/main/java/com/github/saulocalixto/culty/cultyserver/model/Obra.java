@@ -100,19 +100,4 @@ public class Obra extends ObjetoPadrao {
         this.conteudo = conteudo;
     }
 
-    public int getQuantidadeGostei() {
-        return quantGostei;
-    }
-
-    public void setQuantidadeGostei(int quantGostei) {
-        this.quantGostei = quantGostei;
-    }
-
-    public int getQuantidadeVisualizacoes() {
-        return quantVisualizacoes;
-    }
-
-    public void setQuantidadeVisualizacoes(int quantiVisualizacoes) {
-        this.quantVisualizacoes = quantiVisualizacoes;
-    }
 }

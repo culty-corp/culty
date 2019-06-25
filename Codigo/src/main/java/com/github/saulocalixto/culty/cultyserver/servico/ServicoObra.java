@@ -19,6 +19,21 @@ public class ServicoObra extends ServicoPadrao<Obra, IObraRepository> implements
 
     @Override
     public void addVisualizacao(Obra obra) {
+        obra.setQuantVisualizacoes(obra.getQuantVisualizacoes() + 1);
         repositorio.save(obra);
     }
+
+    public void addGostei (Obra obra) {
+        obra.setQuantGostei(obra.getQuantGostei() + 1);
+        repositorio.save(obra);
+    }
+
+    public void removerGostei (Obra obra) {
+        obra.setQuantGostei(obra.getQuantGostei() - 1);
+        if (obra.getQuantGostei() < 0)
+            obra.setQuantGostei(0);
+        repositorio.save(obra);
+    }
+
+
 }
