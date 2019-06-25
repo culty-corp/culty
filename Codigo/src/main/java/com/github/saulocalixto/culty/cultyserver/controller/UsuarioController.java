@@ -1,14 +1,14 @@
 package com.github.saulocalixto.culty.cultyserver.controller;
 
+import com.github.saulocalixto.culty.cultyserver.controller.utilidade.URL;
 import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoPadrao;
 import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RequestMapping("/usuarios")
@@ -45,5 +45,13 @@ public class UsuarioController extends ControllerPadrao<Usuario> {
     public ResponseEntity<Void> deixarDeGostarObra(@PathVariable String idUsuario, @PathVariable String idObra) {
         servico.deixarDeGostarObra(idUsuario, idObra);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/consultarPorNome", method = RequestMethod.GET)
+    public ResponseEntity<List<Usuario>> consultarPorNomeUsuario(@RequestParam(value = "text", defaultValue = "")
+                                                                             String text) {
+        text = URL.decodeParam(text);
+        List<Usuario> list = servico.consultarPorNomeUsuario(text);
+        return ResponseEntity.ok().body(list);
     }
 }

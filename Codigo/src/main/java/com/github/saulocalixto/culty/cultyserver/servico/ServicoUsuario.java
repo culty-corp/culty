@@ -86,4 +86,8 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository> i
             usuario.setQuantSeguidores(0);
         repositorioUsuario.save(usuario);
     }
+
+    public List<Usuario> consultarPorNomeUsuario (String text) {
+        return repositorioUsuario.findByNomeUsuarioContainingIgnoreCase(text);
+    }
 }
