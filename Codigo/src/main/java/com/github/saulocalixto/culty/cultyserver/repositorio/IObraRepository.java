@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface IObraRepository extends MongoRepository<Obra, String> {
-    List<Obra> findByFiltrosContainingIgnoreCase(String text);
+    List<Obra> findByFiltrosContainingIgnoreCase(String[] text);
 }

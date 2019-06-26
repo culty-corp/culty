@@ -30,8 +30,8 @@ public class ObraController extends ControllerPadrao<Obra> {
     public ResponseEntity<List<Obra>> consultarPorFiltro(@RequestParam(value = "text", defaultValue = "")
                                                                          String text) {
         text = URL.decodeParam(text);
-        text = text.toLowerCase();
-        List<Obra> list = servico.consultarPorFiltro(text);
+        String[] filters = text.toLowerCase().split(",");
+        List<Obra> list = servico.consultarPorFiltro(filters);
         return ResponseEntity.ok().body(list);
     }
 }

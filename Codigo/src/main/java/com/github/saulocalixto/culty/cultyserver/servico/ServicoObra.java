@@ -37,7 +37,7 @@ public class ServicoObra extends ServicoPadrao<Obra, IObraRepository> implements
         repositorio.save(obra);
     }
 
-    public List<Obra> consultarPorFiltro (String filtro) {
+    public List<Obra> consultarPorFiltro (String[] filtro) {
         return repositorio.findByFiltrosContainingIgnoreCase(filtro);
     }
 
