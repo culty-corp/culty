@@ -13,7 +13,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 public abstract class ControllerPadrao<T extends ObjetoPadrao> {
 
     @Autowired
