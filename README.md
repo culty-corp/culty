@@ -20,3 +20,30 @@ O projeto foi desenvolvido para três disciplinas que foram ministradas simultâ
 - Desenvolvimento de Software para Dispositivos Ubíquos
 - Desenvolvimento de Software para Persistência
 - Desenvolvimento de Software para Web
+
+## API
+
+Os dados do Culty podem ser acessados via REST API utilizando a seguinte URI:
+```sh
+http://sifo.tech/culty/
+```
+
+### Usuarios (/usuarios)
+* GET /usuarios
+* GET /usuarios/{id}
+* PUT /usuarios/{id}
+* POST /usuarios
+* DELETE /usuarios
+
+```json
+"nomeUsuario": "saulocalixto",
+"descricao": null,
+"email": "email@teste.com.br",
+"dataDeNascimento": null,
+"localizacao": null,
+"redesSociais": {
+  "facebook": null,
+  "instagram": null,
+  "youtube": null
+}
+```
