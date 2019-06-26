@@ -31,9 +31,15 @@ http://sifo.tech/culty/
 ### Usuarios (/usuarios)
 * GET /usuarios
 * GET /usuarios/{id}
+* GET /usuarios/consultarPorNome
 * PUT /usuarios/{id}
+* PUT /usuarios/seguir/{idseguidor}/{idseguido}
+* PUT /usuarios/deixarDeSeguir/{idseguidor}/{idseguido}
+* PUT /usuarios/gostar/{idUsuario}/{idObra}
+* PUT /usuarios/deixarDeGostar/{idUsuario}/{idObra}
 * POST /usuarios
 * DELETE /usuarios
+
 
 ```json
 "nomeUsuario": "saulocalixto",
@@ -46,4 +52,23 @@ http://sifo.tech/culty/
   "instagram": null,
   "youtube": null
 }
+```
+
+### Obras (/obras)
+* GET /obras
+* GET /obras/{id}
+* GET /obras/consultarPorFiltro
+* PUT /obras/{id}
+* POST /obras
+* DELETE /obras
+
+```json
+"nome": "Obra de Paris",
+"tipoConteudo": null,
+"usuario": null,
+"descricao": null,
+"conteudo": null,
+"quantGostei": 3,
+"quantVisualizacoes": 10,
+"filtros": null
 ```
