@@ -57,7 +57,7 @@ http://sifo.tech/culty/
 ### Obras (/obras)
 * GET /obras
 * GET /obras/{id}
-* GET /obras/consultarPorFiltro
+* GET /obras/consultarPorFiltro?text={param1,param2,...}
 * PUT /obras/{id}
 * POST /obras
 * DELETE /obras
@@ -70,5 +70,10 @@ http://sifo.tech/culty/
 "conteudo": null,
 "quantGostei": 3,
 "quantVisualizacoes": 10,
-"filtros": null
+"filtros": [
+  "pintura",
+  "desenho",
+  "paris",
+  "bonita"
+]
 ```
