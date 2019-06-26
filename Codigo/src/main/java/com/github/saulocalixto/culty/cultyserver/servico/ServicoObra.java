@@ -6,6 +6,8 @@ import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoObra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServicoObra extends ServicoPadrao<Obra, IObraRepository> implements IServicoObra {
 
@@ -33,6 +35,10 @@ public class ServicoObra extends ServicoPadrao<Obra, IObraRepository> implements
         if (obra.getQuantGostei() < 0)
             obra.setQuantGostei(0);
         repositorio.save(obra);
+    }
+
+    public List<Obra> consultarPorFiltro (String filtro) {
+        return repositorio.findByFiltrosContainingIgnoreCase(filtro);
     }
 
 

@@ -33,8 +33,10 @@ public class Obra extends ObjetoPadrao {
     private int quantGostei;
     private int quantVisualizacoes;
 
-    @DBRef
-    private List<Filtro> filtros;
+    private List<String> filtros;
+
+//    @DBRef
+//    private List<Filtro> filtros;
 
     public String getDescricao() {
         return descricao;
@@ -60,13 +62,13 @@ public class Obra extends ObjetoPadrao {
         this.quantVisualizacoes = quantVisualizacoes;
     }
 
-    public List<Filtro> getFiltros() {
-        return filtros;
-    }
-
-    public void setFiltros(List<Filtro> filtros) {
-        this.filtros = filtros;
-    }
+//    public List<Filtro> getFiltros() {
+//        return filtros;
+//    }
+//
+//    public void setFiltros(List<Filtro> filtros) {
+//        this.filtros = filtros;
+//    }
 
     public String getNome() {
         return nome;
@@ -100,4 +102,11 @@ public class Obra extends ObjetoPadrao {
         this.conteudo = conteudo;
     }
 
+    public List<String> getFiltros() {
+        return filtros;
+    }
+
+    public void setFiltros(List<String> filtros) {
+        this.filtros = filtros;
+    }
 }
