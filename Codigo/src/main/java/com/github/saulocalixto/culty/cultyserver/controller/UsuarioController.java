@@ -1,6 +1,7 @@
 package com.github.saulocalixto.culty.cultyserver.controller;
 
 import com.github.saulocalixto.culty.cultyserver.controller.utilidade.URL;
+import com.github.saulocalixto.culty.cultyserver.dto.DTOUsuario;
 import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoPadrao;
 import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoUsuario;
@@ -13,13 +14,13 @@ import java.util.List;
 
 @RequestMapping("/usuarios")
 @RestController
-public class UsuarioController extends ControllerPadrao<Usuario> {
+public class UsuarioController extends ControllerPadrao<Usuario, DTOUsuario> {
 
     @Autowired
     private IServicoUsuario servico;
 
     @Override
-    protected IServicoPadrao<Usuario> Servico() {
+    protected IServicoPadrao<Usuario, DTOUsuario> Servico() {
         return servico;
     }
 
@@ -48,10 +49,10 @@ public class UsuarioController extends ControllerPadrao<Usuario> {
     }
 
     @RequestMapping(value = "/consultarPorNome", method = RequestMethod.GET)
-    public ResponseEntity<List<Usuario>> consultarPorNomeUsuario(@RequestParam(value = "text", defaultValue = "")
+    public ResponseEntity<List<DTOUsuario>> consultarPorNomeUsuario(@RequestParam(value = "text", defaultValue = "")
                                                                              String text) {
         text = URL.decodeParam(text);
-        List<Usuario> list = servico.consultarPorNomeUsuario(text);
+        List<DTOUsuario> list = servico.consultarPorNomeUsuario(text);
         return ResponseEntity.ok().body(list);
     }
 }

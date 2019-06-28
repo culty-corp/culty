@@ -1,15 +1,13 @@
 package com.github.saulocalixto.culty.cultyserver.dto;
 
+import com.github.saulocalixto.culty.cultyserver.utilidade.FormatarData;
 import com.github.saulocalixto.culty.cultyserver.model.Localizacao;
 import com.github.saulocalixto.culty.cultyserver.model.Obra;
 import com.github.saulocalixto.culty.cultyserver.model.usuario.RedesSociais;
 import com.github.saulocalixto.culty.cultyserver.model.usuario.Usuario;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class DTOUsuario extends DTOPadrao<Usuario> {
 
@@ -25,33 +23,32 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
 
     private List<String> listaObrasGostadas = new ArrayList<>();
 
+    public DTOUsuario() {
+    }
+
     public DTOUsuario(Usuario usuario) {
         super(usuario);
-        this.setNomeUsuario(usuario.getNomeUsuario());
-        this.setDescricao(usuario.getDescricao());
-        this.setEmail(usuario.getEmail());
-        this.setDataDeNascimento(formatarData(usuario.getDataDeNascimento()));
-        this.setLocalizacao(usuario.getLocalizacao());
-        this.setRedesSociais(usuario.getRedesSociais());
+        if (usuario.getNomeUsuario() != null)
+            this.setNomeUsuario(usuario.getNomeUsuario());
+        if (usuario.getDescricao() != null)
+            this.setDescricao(usuario.getDescricao());
+        if (usuario.getEmail() != null)
+            this.setEmail(usuario.getEmail());
+        if (usuario.getDataDeNascimento() != null)
+            this.setDataDeNascimento(FormatarData.formatarData(usuario.getDataDeNascimento()));
+        if (usuario.getLocalizacao() != null)
+            this.setLocalizacao(usuario.getLocalizacao());
+        if (usuario.getRedesSociais() != null)
+            this.setRedesSociais(usuario.getRedesSociais());
         this.setQuantSeguidores(usuario.getQuantSeguidores());
+        if (usuario.getListaSeguindo() != null)
         for (Usuario usuarioDaLista : usuario.getListaSeguindo())
-            this.getListaSeguindo().add(usuarioDaLista.get_id().toString());
+            if (usuarioDaLista != null && usuarioDaLista.get_id() != null)
+                this.getListaSeguindo().add(usuarioDaLista.get_id().toString());
+        if (usuario.getListaObrasGostadas() != null)
         for (Obra obraDaLista : usuario.getListaObrasGostadas())
-            this.getListaObrasGostadas().add(obraDaLista.get_id().toString());
-    }
-
-    public static List<DTOUsuario> conveterLista(List<Usuario> lista) {
-        List<DTOUsuario> listaDTO = new ArrayList<>();
-        for (Usuario usuario : lista) {
-            listaDTO.add(new DTOUsuario(usuario));
-        }
-        return listaDTO;
-    }
-
-    private String formatarData(Date dataDeNascimento) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT-3"));
-        return sdf.format(dataDeNascimento);
+            if (obraDaLista != null && obraDaLista.get_id() != null)
+                this.getListaObrasGostadas().add(obraDaLista.get_id().toString());
     }
 
     public String getNomeUsuario() {

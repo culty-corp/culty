@@ -18,24 +18,25 @@ public class DTOObra extends DTOPadrao<Obra> {
 
     private List<String> filtros;
 
-    public DTOObra(Obra obra) {
-        super(obra);
-        this.setNome(obra.getNome());
-        this.setTipoConteudo(obra.getTipoConteudo().name());
-        this.setDescricao(obra.getDescricao());
-        this.setConteudo(obra.getConteudo());
-        this.setQuantGostei(obra.getQuantGostei());
-        this.setQuantVisualizacoes(obra.getQuantVisualizacoes());
-        this.setUsuario(obra.getUsuario().get_id().toString());
-        this.setFiltros(obra.getFiltros());
+    public DTOObra() {
     }
 
-    public static List<DTOObra> converterLista (List<Obra> lista) {
-        List<DTOObra> listaDTO = new ArrayList<>();
-        for(Obra obra : lista) {
-            listaDTO.add(new DTOObra(obra));
-        }
-        return listaDTO;
+    public DTOObra(Obra obra) {
+        super(obra);
+        if (obra.getNome() != null)
+            this.setNome(obra.getNome());
+        if (obra.getTipoConteudo() != null)
+            this.setTipoConteudo(obra.getTipoConteudo().name());
+        if (obra.getDescricao() != null)
+            this.setDescricao(obra.getDescricao());
+        if (obra.getConteudo() != null)
+            this.setConteudo(obra.getConteudo());
+        this.setQuantGostei(obra.getQuantGostei());
+        this.setQuantVisualizacoes(obra.getQuantVisualizacoes());
+        if (obra.getUsuario() != null && obra.getUsuario().get_id() != null)
+            this.setUsuario(obra.getUsuario().get_id().toString());
+        if (obra.getFiltros() != null)
+        this.setFiltros(obra.getFiltros());
     }
 
     public String getNome() {

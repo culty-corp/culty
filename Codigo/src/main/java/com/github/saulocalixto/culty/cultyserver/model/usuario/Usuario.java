@@ -102,7 +102,8 @@ public class Usuario extends ObjetoPadrao {
         return quantSeguidores;
     }
 
-    public void setQuantSeguidores(int quantSeguidores) {
+    public Usuario setQuantSeguidores(int quantSeguidores) {
         this.quantSeguidores = quantSeguidores;
+        return this;
     }
 }

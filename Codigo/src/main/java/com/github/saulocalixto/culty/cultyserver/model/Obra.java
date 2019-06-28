@@ -35,9 +35,6 @@ public class Obra extends ObjetoPadrao {
 
     private List<String> filtros;
 
-//    @DBRef
-//    private List<Filtro> filtros;
-
     public String getDescricao() {
         return descricao;
     }
@@ -61,14 +58,6 @@ public class Obra extends ObjetoPadrao {
     public void setQuantVisualizacoes(int quantVisualizacoes) {
         this.quantVisualizacoes = quantVisualizacoes;
     }
-
-//    public List<Filtro> getFiltros() {
-//        return filtros;
-//    }
-//
-//    public void setFiltros(List<Filtro> filtros) {
-//        this.filtros = filtros;
-//    }
 
     public String getNome() {
         return nome;
