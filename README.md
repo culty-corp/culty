@@ -31,14 +31,14 @@ http://sifo.tech/culty/
 ### Usuarios (/usuarios)
 * GET /usuarios
 * GET /usuarios/{id}
-* GET /usuarios/consultarPorNome
+* GET /usuarios/consultarPorNome?text={nome}
 * PUT /usuarios/{id}
 * PUT /usuarios/seguir/{idseguidor}/{idseguido}
 * PUT /usuarios/deixarDeSeguir/{idseguidor}/{idseguido}
 * PUT /usuarios/gostar/{idUsuario}/{idObra}
 * PUT /usuarios/deixarDeGostar/{idUsuario}/{idObra}
 * POST /usuarios
-* DELETE /usuarios
+* DELETE /usuarios/{id}
 
 
 ```json
@@ -60,7 +60,7 @@ http://sifo.tech/culty/
 * GET /obras/consultarPorFiltro?text={param1,param2,...}
 * PUT /obras/{id}
 * POST /obras
-* DELETE /obras
+* DELETE /obras/{id}
 
 ```json
 "nome": "Obra de Paris",
