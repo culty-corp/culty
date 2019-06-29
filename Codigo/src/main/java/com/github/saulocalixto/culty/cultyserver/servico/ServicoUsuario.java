@@ -39,8 +39,8 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository, D
         Usuario usuario = new Usuario();
         if (dto.getId() != null)
             usuario.set_id(new ObjectId(dto.getId()));
-        if (dto.getNomeUsuario() != null)
-            usuario.setNomeUsuario(dto.getNomeUsuario());
+        if (dto.getNome() != null)
+            usuario.setNomeUsuario(dto.getNome());
         if (dto.getDescricao() != null)
                 usuario.setDescricao(dto.getDescricao());
         if (dto.getEmail() != null)

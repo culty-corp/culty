@@ -1,66 +1,71 @@
 package com.github.saulocalixto.culty.cultyserver.dto;
 
 import com.github.saulocalixto.culty.cultyserver.model.Obra;
+import com.github.saulocalixto.culty.cultyserver.model.enums.TipoConteudo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DTOObra extends DTOPadrao<Obra> {
 
-    private String nome;
-    private String tipoConteudo;
-    private String descricao;
+    private String titulo;
+    private String tipoMidia;
+    private String resumo;
     private byte[] conteudo;
+    private String conteudoTexto;
     private int quantGostei;
     private int quantVisualizacoes;
 
-    private String usuario;
+    private DTOUsuario usuario;
 
     private List<String> filtros;
 
-    public DTOObra() {
-    }
-
     public DTOObra(Obra obra) {
         super(obra);
-        if (obra.getNome() != null)
-            this.setNome(obra.getNome());
-        if (obra.getTipoConteudo() != null)
-            this.setTipoConteudo(obra.getTipoConteudo().name());
-        if (obra.getDescricao() != null)
-            this.setDescricao(obra.getDescricao());
-        if (obra.getConteudo() != null)
-            this.setConteudo(obra.getConteudo());
+
+    }
+
+    public DTOObra(){
+        super();
+    }
+
+    @Override
+    protected void ConverteObjetoParaDto(Obra obra) {
+
+        this.setTitulo(obra.getNome());
+        this.setTipoMidia(obra.getTipoConteudo().name());
+        this.setResumo(obra.getDescricao());
+        this.setConteudo(obra.getConteudo());
         this.setQuantGostei(obra.getQuantGostei());
         this.setQuantVisualizacoes(obra.getQuantVisualizacoes());
-        if (obra.getUsuario() != null && obra.getUsuario().get_id() != null)
-            this.setUsuario(obra.getUsuario().get_id().toString());
-        if (obra.getFiltros() != null)
+        this.setConteudoTexto(obra.getConteudoTexto());
+
+        convertaUsuario(obra);
+
         this.setFiltros(obra.getFiltros());
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getTipoConteudo() {
-        return tipoConteudo;
+    public String getTipoMidia() {
+        return tipoMidia;
     }
 
-    public void setTipoConteudo(String tipoConteudo) {
-        this.tipoConteudo = tipoConteudo;
+    public void setTipoMidia(String tipoMidia) {
+        this.tipoMidia = tipoMidia;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getResumo() {
+        return resumo;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setResumo(String resumo) {
+        this.resumo = resumo;
     }
 
     public byte[] getConteudo() {
@@ -87,11 +92,11 @@ public class DTOObra extends DTOPadrao<Obra> {
         this.quantVisualizacoes = quantVisualizacoes;
     }
 
-    public String getUsuario() {
+    public DTOUsuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(DTOUsuario usuario) {
         this.usuario = usuario;
     }
 
@@ -101,5 +106,21 @@ public class DTOObra extends DTOPadrao<Obra> {
 
     public void setFiltros(List<String> filtros) {
         this.filtros = filtros;
+    }
+
+    private void convertaUsuario(Obra obra) {
+        if (obra.getUsuario() != null && obra.getUsuario().get_id() != null) {
+            this.usuario = new DTOUsuario();
+            this.usuario.setId(obra.getUsuario().get_id().toString());
+            this.usuario.setNome(obra.getUsuario().getNomeUsuario());
+        }
+    }
+
+    public String getConteudoTexto() {
+        return conteudoTexto;
+    }
+
+    public void setConteudoTexto(String conteudoTexto) {
+        this.conteudoTexto = conteudoTexto;
     }
 }

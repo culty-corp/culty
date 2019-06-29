@@ -19,7 +19,6 @@ import java.util.List;
 /**
  * @author Lucas Sampaio Dias
  */
-@Document(collection = "obra")
 public class Obra extends ObjetoPadrao {
     
     private String nome;
@@ -29,59 +28,10 @@ public class Obra extends ObjetoPadrao {
     private Usuario usuario;
 
     private String descricao;
-    private byte[] conteudo;
     private int quantGostei;
     private int quantVisualizacoes;
-
-    private List<String> filtros;
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getQuantGostei() {
-        return quantGostei;
-    }
-
-    public void setQuantGostei(int quantGostei) {
-        this.quantGostei = quantGostei;
-    }
-
-    public int getQuantVisualizacoes() {
-        return quantVisualizacoes;
-    }
-
-    public void setQuantVisualizacoes(int quantVisualizacoes) {
-        this.quantVisualizacoes = quantVisualizacoes;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public TipoConteudo getTipoConteudo() {
-        return tipoConteudo;
-    }
-
-    public void setTipoConteudo(TipoConteudo tipoConteudo) {
-        this.tipoConteudo = tipoConteudo;
-    }
+    private byte[] conteudo;
+    private String conteudoTexto;
 
     public byte[] getConteudo() {
         return conteudo;
@@ -91,11 +41,76 @@ public class Obra extends ObjetoPadrao {
         this.conteudo = conteudo;
     }
 
+    private List<String> filtros;
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Obra setDescricao(String descricao) {
+        this.descricao = descricao;
+        return this;
+    }
+
+    public int getQuantGostei() {
+        return quantGostei;
+    }
+
+    public Obra setQuantGostei(int quantGostei) {
+        this.quantGostei = quantGostei < 0 ? 0 : quantGostei;
+        return this;
+    }
+
+    public int getQuantVisualizacoes() {
+        return quantVisualizacoes;
+    }
+
+    public Obra setQuantVisualizacoes(int quantVisualizacoes) {
+        this.quantVisualizacoes = quantVisualizacoes < 0 ? 0 : quantVisualizacoes;
+        return this;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Obra setNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public Obra setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        return this;
+    }
+
+    public TipoConteudo getTipoConteudo() {
+        return tipoConteudo;
+    }
+
+    public Obra setTipoConteudo(TipoConteudo tipoConteudo) {
+        this.tipoConteudo = tipoConteudo;
+        return this;
+    }
+
     public List<String> getFiltros() {
         return filtros;
     }
 
-    public void setFiltros(List<String> filtros) {
+    public Obra setFiltros(List<String> filtros) {
         this.filtros = filtros;
+        return this;
+    }
+
+    public String getConteudoTexto() {
+        return conteudoTexto;
+    }
+
+    public void setConteudoTexto(String conteudoTexto) {
+        this.conteudoTexto = conteudoTexto;
     }
 }

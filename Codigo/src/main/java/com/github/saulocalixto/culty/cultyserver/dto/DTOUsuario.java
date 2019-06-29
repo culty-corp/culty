@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DTOUsuario extends DTOPadrao<Usuario> {
 
-    private String nomeUsuario;
+    private String nome;
     private String descricao;
     private String email;
     private String dataDeNascimento;
@@ -23,13 +23,19 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
 
     private List<String> listaObrasGostadas = new ArrayList<>();
 
-    public DTOUsuario() {
-    }
-
     public DTOUsuario(Usuario usuario) {
         super(usuario);
+    }
+
+    public DTOUsuario(){
+        super();
+    }
+
+    @Override
+    protected void ConverteObjetoParaDto(Usuario usuario) {
+
         if (usuario.getNomeUsuario() != null)
-            this.setNomeUsuario(usuario.getNomeUsuario());
+            this.setNome(usuario.getNomeUsuario());
         if (usuario.getDescricao() != null)
             this.setDescricao(usuario.getDescricao());
         if (usuario.getEmail() != null)
@@ -42,21 +48,22 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
             this.setRedesSociais(usuario.getRedesSociais());
         this.setQuantSeguidores(usuario.getQuantSeguidores());
         if (usuario.getListaSeguindo() != null)
-        for (Usuario usuarioDaLista : usuario.getListaSeguindo())
-            if (usuarioDaLista != null && usuarioDaLista.get_id() != null)
-                this.getListaSeguindo().add(usuarioDaLista.get_id().toString());
+            for (Usuario usuarioDaLista : usuario.getListaSeguindo())
+                if (usuarioDaLista != null && usuarioDaLista.get_id() != null)
+                    this.getListaSeguindo().add(usuarioDaLista.get_id().toString());
         if (usuario.getListaObrasGostadas() != null)
-        for (Obra obraDaLista : usuario.getListaObrasGostadas())
-            if (obraDaLista != null && obraDaLista.get_id() != null)
-                this.getListaObrasGostadas().add(obraDaLista.get_id().toString());
+            for (Obra obraDaLista : usuario.getListaObrasGostadas())
+                if (obraDaLista != null && obraDaLista.get_id() != null)
+                    this.getListaObrasGostadas().add(obraDaLista.get_id().toString());
+
     }
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {

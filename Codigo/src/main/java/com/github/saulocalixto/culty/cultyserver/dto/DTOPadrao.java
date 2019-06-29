@@ -8,13 +8,13 @@ public abstract class DTOPadrao<T extends ObjetoPadrao> implements Serializable 
 
     private String id;
 
-    public DTOPadrao() {
-    }
-
     public DTOPadrao(T objeto) {
         if (objeto != null && objeto.get_id() != null)
             this.id = objeto.get_id().toString();
+        ConverteObjetoParaDto(objeto);
     }
+
+    public DTOPadrao(){}
 
     public String getId() {
         return id;
@@ -23,4 +23,6 @@ public abstract class DTOPadrao<T extends ObjetoPadrao> implements Serializable 
     public void setId(String id) {
         this.id = id;
     }
+
+    protected abstract void ConverteObjetoParaDto(T objeto);
 }

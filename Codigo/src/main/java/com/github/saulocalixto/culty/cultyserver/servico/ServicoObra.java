@@ -35,31 +35,35 @@ public class ServicoObra extends ServicoPadrao<Obra, IObraRepository, DTOObra> i
 
     @Override
     protected Obra transformarEmObjeto(DTOObra dto) {
+
+        TipoConteudo tipo = null;
         Obra obra = new Obra();
-        if (dto.getId() != null)
-            obra.set_id(new ObjectId(dto.getId()));
-        if (dto.getNome() != null)
-            obra.setNome(dto.getNome());
-        if (dto.getTipoConteudo() != null)
+
+        if (dto.getTipoMidia() != null)
             try {
-            obra.setTipoConteudo(TipoConteudo.valueOf(dto.getTipoConteudo()));
+                tipo = (TipoConteudo.valueOf(dto.getTipoMidia()));
             } catch (Exception e) {
-            throw new TipoConteudoInvalido("O tipo de conteudo informado na obra é invalido");
+                throw new TipoConteudoInvalido("O tipo de conteudo informado na obra é inválido");
             }
-        if (dto.getUsuario() != null)
-            obra.setUsuario(servicoUsuario.consultarPorId(dto.getUsuario()));
-        if (dto.getDescricao() != null)
-            obra.setDescricao(dto.getDescricao());
-        if (dto.getConteudo() != null)
-            obra.setConteudo(dto.getConteudo());
-        if (dto.getQuantGostei() > 0)
+
+        obra.setTipoConteudo(tipo);
+
+        if(dto.getId() != null) {
+            obra.set_id(new ObjectId(dto.getId()));
+        }
+
+        obra.setNome(dto.getTitulo());
+        obra.setUsuario(servicoUsuario.consultarPorId(dto.getUsuario().getId()));
+        obra.setDescricao(dto.getResumo());
+        obra.setConteudo(dto.getConteudo());
+        obra.setConteudoTexto(dto.getConteudoTexto());
+
         obra.setQuantGostei(dto.getQuantGostei());
-        else obra.setQuantGostei(0);
-        if (dto.getQuantVisualizacoes() > 0)
+
         obra.setQuantVisualizacoes(dto.getQuantVisualizacoes());
-        else obra.setQuantVisualizacoes(0);
-        if (dto.getFiltros() != null)
+
         obra.setFiltros(dto.getFiltros());
+
         return obra;
     }
 
