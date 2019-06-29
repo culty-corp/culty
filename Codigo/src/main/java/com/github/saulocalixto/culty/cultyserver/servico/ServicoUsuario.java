@@ -72,8 +72,12 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository, D
     public Usuario seguir(String idSeguidor, String idSeguido) {
         Usuario seguidor = this.consultarPorId(idSeguidor);
         Usuario seguido = this.consultarPorId(idSeguido);
-        addSeguidor(seguido);
+        for (Usuario usuarioNaLista : seguidor.getListaSeguindo()) {
+            if (usuarioNaLista.get_id().equals(seguido.get_id()))
+                return seguidor;
+        }
         seguidor.getListaSeguindo().add(seguido);
+        addSeguidor(seguido);
         return repositorioUsuario.save(seguidor);
     }
 
@@ -97,6 +101,10 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository, D
     public Usuario gostarObra(String idUsuario, String idObra) {
         Usuario usuario = this.consultarPorId(idUsuario);
         Obra obra = servicoObra.consultarPorId(idObra);
+        for (Obra obraNaLista : usuario.getListaObrasGostadas()) {
+            if (obraNaLista.get_id().equals(obra.get_id()))
+                return usuario;
+        }
         usuario.getListaObrasGostadas().add(obra);
         servicoObra.addGostei(obra);
         return repositorioUsuario.save(usuario);
