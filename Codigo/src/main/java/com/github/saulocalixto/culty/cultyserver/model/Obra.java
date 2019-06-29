@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * @author Lucas Sampaio Dias
  */
+@Document(collection = "obra")
 public class Obra extends ObjetoPadrao {
     
     private String nome;
