@@ -11,4 +11,5 @@ public interface IServicoUsuario extends IServicoPadrao<Usuario, DTOUsuario> {
     Usuario gostarObra(String idUsuario, String idObra);
     Usuario deixarDeGostarObra(String idUsuario, String idObra);
     List<DTOUsuario> consultarPorNomeUsuario (String text);
+    DTOUsuario valideEmailESenha(String email, String senha);
 }

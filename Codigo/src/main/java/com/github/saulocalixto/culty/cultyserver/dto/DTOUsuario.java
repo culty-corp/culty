@@ -18,6 +18,7 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
     private Localizacao localizacao;
     private RedesSociais redesSociais;
     private int quantSeguidores;
+    private String senha;
 
     private List<String> listaSeguindo = new ArrayList<>();
 
@@ -42,6 +43,7 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
             this.setEmail(usuario.getEmail());
         if (usuario.getDataDeNascimento() != null)
             this.setDataDeNascimento(FormatarData.formatarData(usuario.getDataDeNascimento()));
+        this.setSenha(usuario.getSenha());
         if (usuario.getLocalizacao() != null)
             this.setLocalizacao(usuario.getLocalizacao());
         if (usuario.getRedesSociais() != null)
@@ -128,5 +130,13 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
 
     public void setListaObrasGostadas(List<String> listaObrasGostadas) {
         this.listaObrasGostadas = listaObrasGostadas;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

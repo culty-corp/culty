@@ -9,22 +9,24 @@ public class Sessao extends ObjetoPadrao {
 
     private ObjectId token;
 
-    @DBRef(lazy = false)
+    @DBRef(lazy = true)
     private Usuario usuario;
 
     public ObjectId getToken() {
         return token;
     }
 
-    public void setToken(ObjectId token) {
+    public Sessao setToken(ObjectId token) {
         this.token = token;
+        return this;
     }
 
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public Sessao setUsuario(Usuario usuario) {
         this.usuario = usuario;
+        return this;
     }
 }

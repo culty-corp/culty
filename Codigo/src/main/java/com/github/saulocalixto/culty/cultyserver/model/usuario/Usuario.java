@@ -19,6 +19,7 @@ public class Usuario extends ObjetoPadrao {
     private Date dataDeNascimento;
     private Localizacao localizacao;
     private RedesSociais redesSociais;
+    private String senha;
     private int quantSeguidores = 0;
 
     @DBRef(lazy = true)
@@ -105,5 +106,13 @@ public class Usuario extends ObjetoPadrao {
     public Usuario setQuantSeguidores(int quantSeguidores) {
         this.quantSeguidores = quantSeguidores;
         return this;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

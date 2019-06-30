@@ -41,6 +41,7 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository, D
             usuario.set_id(new ObjectId(dto.getId()));
         if (dto.getNome() != null)
             usuario.setNomeUsuario(dto.getNome());
+        usuario.setSenha(dto.getSenha());
         if (dto.getDescricao() != null)
                 usuario.setDescricao(dto.getDescricao());
         if (dto.getEmail() != null)
@@ -142,5 +143,11 @@ public class ServicoUsuario extends ServicoPadrao<Usuario, IUsuarioRepository, D
         for (Usuario usuario : repositorioUsuario.findByNomeUsuarioContainingIgnoreCase(text))
             lista.add(transformarEmDto(usuario));
         return lista;
+    }
+
+    @Override
+    public DTOUsuario valideEmailESenha(String email, String senha) {
+        Usuario usuario = repositorioUsuario.findByEmailAndSenha(email, senha);
+        return usuario != null ? new DTOUsuario(usuario) : new DTOUsuario();
     }
 }
