@@ -3,16 +3,12 @@ package com.github.saulocalixto.culty.cultyserver.controller;
 import com.github.saulocalixto.culty.cultyserver.dto.DTOPadrao;
 import com.github.saulocalixto.culty.cultyserver.model.abstratos.ObjetoPadrao;
 import com.github.saulocalixto.culty.cultyserver.servico.contrato.IServicoPadrao;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -23,34 +19,91 @@ public abstract class ControllerPadrao<T extends ObjetoPadrao, T_DTO extends DTO
     protected abstract IServicoPadrao<T, T_DTO> Servico();
 
     @RequestMapping(value = {"","/"}, method = RequestMethod.GET)
-    public ResponseEntity<List<T_DTO>> consultarTodos() {
-        List<T_DTO> lista = Servico().consultarTodos();
-        return ResponseEntity.ok().body(lista);
+    public ResponseEntity consultarTodos() {
+        try {
+            List<T_DTO> lista = Servico().consultarTodos();
+            return ResponseEntity.ok().body(ObtenhaSucesso(lista));
+        } catch (Exception e) {
+            Resposta<Exception> erro = ObtenhaErro(e);
+            return ResponseEntity.badRequest().body(erro);
+        }
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<T_DTO> consultarPorId(@PathVariable("id") String id) {
-        T_DTO objeto = Servico().consultarDTOPorId(id);
-        return ResponseEntity.ok().body(objeto);
+    public ResponseEntity consultarPorId(@PathVariable("id") String id) {
+        try {
+            T_DTO objeto = Servico().consultarDTOPorId(id);
+            return ResponseEntity.ok().body(ObtenhaSucesso(objeto));
+        } catch (Exception e) {
+            Resposta<Exception> erro = ObtenhaErro(e);
+            return ResponseEntity.badRequest().body(erro);
+        }
     }
 
     @RequestMapping(value = {"","/"}, method = RequestMethod.POST)
-    public ResponseEntity<Void> criar(@RequestBody T_DTO objeto) {
-        objeto = Servico().criar(objeto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objeto.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity criar(@RequestBody T_DTO objeto) {
+        try {
+            objeto = Servico().criar(objeto);
+            return ResponseEntity.ok().body(ObtenhaSucesso(objeto));
+        } catch (Exception e) {
+            Resposta<Exception> erro = ObtenhaErro(e);
+            return ResponseEntity.badRequest().body(erro);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deletar(@PathVariable("id") String id) {
-        Servico().deletar(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity deletar(@PathVariable("id") String id) {
+        try {
+            Servico().deletar(id);
+            return ResponseEntity.ok().body(ObtenhaSucesso());
+        } catch (Exception e) {
+            Resposta<Exception> erro = ObtenhaErro(e);
+            return ResponseEntity.badRequest().body(erro);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> atualizar(@PathVariable("id") String id, @RequestBody T_DTO objeto) {
-        objeto.setId(id);
-        Servico().atualizar(objeto);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity atualizar(@PathVariable("id") String id, @RequestBody T_DTO objeto) {
+        try {
+            objeto.setId(id);
+            Servico().atualizar(objeto);
+            return ResponseEntity.ok().body(ObtenhaSucesso());
+        } catch (Exception e) {
+            Resposta<Exception> erro = ObtenhaErro(e);
+            return ResponseEntity.badRequest().body(erro);
+        }
+    }
+
+    private Resposta ObtenhaSucesso(T_DTO resposta){
+        return new Resposta<T_DTO>().ObtenhaResposta(
+                resposta,
+                "OPERAÇÃO REALIZADA COM SUCESSO",
+                true
+        );
+    }
+
+    private Resposta<List<T_DTO>> ObtenhaSucesso(List<T_DTO> resposta){
+        return new Resposta<List<T_DTO>> ().ObtenhaResposta(
+                resposta,
+                "OPERAÇÃO REALIZADA COM SUCESSO",
+                true
+        );
+    }
+
+    private Resposta<T_DTO> ObtenhaSucesso(){
+        return new Resposta<T_DTO>().ObtenhaResposta(
+                null,
+                "OPERAÇÃO REALIZADA COM SUCESSO",
+                true
+        );
+    }
+
+    private Resposta<Exception> ObtenhaErro(Exception e){
+        return new Resposta<Exception>().ObtenhaResposta(
+                null,
+                e.getMessage(),
+                false
+        );
     }
 }

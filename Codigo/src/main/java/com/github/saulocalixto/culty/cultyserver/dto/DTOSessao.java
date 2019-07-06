@@ -1,6 +1,7 @@
 package com.github.saulocalixto.culty.cultyserver.dto;
 
 import com.github.saulocalixto.culty.cultyserver.model.Sessao;
+import com.github.saulocalixto.culty.cultyserver.utilidade.FormatarData;
 
 public class DTOSessao extends DTOPadrao<Sessao> {
 
@@ -42,6 +43,10 @@ public class DTOSessao extends DTOPadrao<Sessao> {
             this.usuario = new DTOUsuario();
             this.usuario.setId(sessao.getUsuario().get_id().toString());
             this.usuario.setNome(sessao.getUsuario().getNomeUsuario());
+            this.usuario.setRedesSociais(sessao.getUsuario().getRedesSociais());
+            this.usuario.setSenha(sessao.getUsuario().getSenha());
+            this.usuario.setDataDeNascimento(FormatarData.formatarData(sessao.getUsuario().getDataDeNascimento()));
+            this.usuario.setSenha(sessao.getUsuario().getSenha());
         }
     }
 
