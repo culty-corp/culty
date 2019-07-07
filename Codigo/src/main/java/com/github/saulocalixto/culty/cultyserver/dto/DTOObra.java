@@ -4,6 +4,7 @@ import com.github.saulocalixto.culty.cultyserver.model.Obra;
 import com.github.saulocalixto.culty.cultyserver.model.enums.TipoConteudo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DTOObra extends DTOPadrao<Obra> {
 
@@ -110,9 +111,7 @@ public class DTOObra extends DTOPadrao<Obra> {
 
     private void convertaUsuario(Obra obra) {
         if (obra.getUsuario() != null && obra.getUsuario().get_id() != null) {
-            this.usuario = new DTOUsuario();
-            this.usuario.setId(obra.getUsuario().get_id().toString());
-            this.usuario.setNome(obra.getUsuario().getNomeUsuario());
+            this.usuario = new DTOUsuario(obra.getUsuario());
         }
     }
 
