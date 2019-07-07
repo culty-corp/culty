@@ -20,12 +20,13 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
     private int quantSeguidores;
     private String senha;
 
-    private List<String> listaSeguindo = new ArrayList<>();
+    private List<String> listaSeguindo;
 
-    private List<String> listaObrasGostadas = new ArrayList<>();
+    private List<String> listaObrasGostadas;
 
     public DTOUsuario(Usuario usuario) {
         super(usuario);
+
     }
 
     public DTOUsuario(){
@@ -53,11 +54,15 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
             for (Usuario usuarioDaLista : usuario.getListaSeguindo())
                 if (usuarioDaLista != null && usuarioDaLista.get_id() != null)
                     this.getListaSeguindo().add(usuarioDaLista.get_id().toString());
-        if (usuario.getListaObrasGostadas() != null)
-            for (Obra obraDaLista : usuario.getListaObrasGostadas())
-                if (obraDaLista != null && obraDaLista.get_id() != null)
-                    this.getListaObrasGostadas().add(obraDaLista.get_id().toString());
-
+        List obrasGostadas = this.getListaObrasGostadas();
+        if (usuario.getListaObrasGostadas() != null) {
+            for (Obra obraDaLista : usuario.getListaObrasGostadas()) {
+                if (obraDaLista != null && obraDaLista.get_id() != null) {
+                    obrasGostadas.add(obraDaLista.get_id().toString());
+                }
+            }
+            this.setListaObrasGostadas(obrasGostadas);
+        }
     }
 
     public String getNome() {
@@ -117,7 +122,7 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
     }
 
     public List<String> getListaSeguindo() {
-        return listaSeguindo;
+        return listaSeguindo == null ? new ArrayList<>() : listaSeguindo;
     }
 
     public void setListaSeguindo(List<String> listaSeguindo) {
@@ -125,7 +130,7 @@ public class DTOUsuario extends DTOPadrao<Usuario> {
     }
 
     public List<String> getListaObrasGostadas() {
-        return listaObrasGostadas;
+        return listaObrasGostadas == null ? new ArrayList<>() : listaObrasGostadas;
     }
 
     public void setListaObrasGostadas(List<String> listaObrasGostadas) {
